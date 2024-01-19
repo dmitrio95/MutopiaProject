@@ -1,4 +1,4 @@
-\version "2.10.16"
+\version "2.16.0"
 
 #(ly:set-option 'point-and-click #f)
 #(set-default-paper-size "a4" )
@@ -24,7 +24,7 @@
 	maintainerWeb = "www.stewartholmes.com"
 	lastupdated = "2007/Feb/11"
 
-	copyright = \markup { \teeny \center-align { "Copyright © 2007" "Licensed under the Creative Commons Attribution-ShareAlike 2.5 License" "http://creativecommons.org/licenses/by-sa/2.5." } }
+	copyright = \markup { \teeny \center-column { "Copyright © 2007" "Licensed under the Creative Commons Attribution-ShareAlike 2.5 License" "http://creativecommons.org/licenses/by-sa/2.5." } }
 	footer = "Mutopia-2007/02/11-276"
 	tagline = ""
 }
@@ -56,7 +56,7 @@ movePhrasingSlur = #(define-music-function (parser location shift) (pair?)
 fingerscript =
 {
 	\once \override TextScript #'font-size = #-5
-	\once \override TextScript #'font-encoding = #'fetaNumber
+	\once \override TextScript #'font-encoding = #'fetaText
 }
 
 topmain =  \relative c'
@@ -155,10 +155,6 @@ topmain =  \relative c'
 
 topsecondary =  \relative c'
 {
-	#(override-auto-beam-setting '(end * * * *)  1 4)
-	#(override-auto-beam-setting '(end * * * *)  2 4)
-	#(override-auto-beam-setting '(end * * * *)  3 4)
-	
 	\set tupletSpannerDuration = #(ly:make-moment 1 4)
 	
 	\set fingeringOrientations = #'(up)
@@ -429,12 +425,18 @@ breaking =
 			\context Staff = "up"
 			<<
 				\set Staff.midiInstrument = #"acoustic grand"
+				\set Staff.beamExceptions = #'()
+				\set Staff.baseMoment = #(ly:make-moment 1 4)
+				\set Staff.beatStructure = #'(1 1 1 1)
 				\context Voice = VA { \voiceOne \override Fingering #'avoid-slur = #'none \topmain }
 				\context Voice = VB { \voiceTwo \override Fingering #'avoid-slur = #'none \topsecondary }
 			>>
 			\context Staff = "down"
 			<<
 				\set Staff.midiInstrument = #"acoustic grand"
+				\set Staff.beamExceptions = #'()
+				\set Staff.baseMoment = #(ly:make-moment 1 4)
+				\set Staff.beatStructure = #'(1 1 1 1)
 				<< {\breaking} \\ {\bottom} >>
 			>>
 		>>

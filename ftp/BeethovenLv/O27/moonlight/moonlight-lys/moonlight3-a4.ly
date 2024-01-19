@@ -1,4 +1,4 @@
-\version "2.10.16"
+\version "2.16.0"
 
 #(ly:set-option 'point-and-click #f)
 #(set-global-staff-size 20)
@@ -22,10 +22,10 @@
 	maintainerWeb = "www.stewartholmes.com"
 	lastupdated = "2007/Feb/11"
 
-	tagline = \markup 	{ \center-align
+	tagline = \markup 	{ \center-column
 					\fontsize #-3.5
 					{
-						\center-align
+						\center-column
 						{
 							\fill-line {  "" "Creative Commons Attribution-ShareAlike 2.5 License" "" "Typeset by Chris Sawer and Stewart Holmes" "" }
 							\fill-line { "" "Music from The Mutopia Project (www.mutopiaproject.org)" "" "Engraving by GNU LilyPond (www.lilypond.org)" "" }
@@ -38,7 +38,7 @@
 
 nudge = #(define-music-function (parser location shift) (number?)
 #{
-	\once \override Score.SeparationItem #'padding = #$shift
+	\once \override Score.SeparationItem #'padding = #shift
 #})
 
 moveTie = #(define-music-function (parser location shift) (pair?)
@@ -48,18 +48,20 @@ moveTie = #(define-music-function (parser location shift) (pair?)
 
 tieHeadGap  = #(define-music-function (parser location shift) (number?)
 #{
-	\once \override Tie #'details #'note-head-gap = #$shift
+	\once \override Tie #'details #'note-head-gap = #shift
 #})
 
 blank =
 {
 	\override NoteHead #'transparent  = ##t
 	\override Stem #'transparent = ##t
+	\override Flag #'transparent = ##t
 }
 unblank =
 {
 	\revert NoteHead #'transparent
 	\revert Stem #'transparent
+	\revert Flag #'transparent
 }
 
 clearTuplet = 
@@ -947,39 +949,39 @@ sustain =
 {
 	\override Staff.SustainPedalLineSpanner #'staff-padding = #5
 	
-	s1 | s2. s8-\sustainDown \pedalShift #'(3 . 0) s-\sustainUp |
-	s1 | s2. s8-\sustainDown \pedalShift #'(3 . 0) s-\sustainUp |
-	s1 | s2. s8-\sustainDown \pedalShift #'(3 . 0) s-\sustainUp |
-	s2. s8-\sustainDown \pedalShift #'(2 . 0) s-\sustainUp | s2. s8-\sustainDown \pedalShift #'(1 . 0) s-\sustainUp |
+	s1 | s2. s8-\sustainOn \pedalShift #'(3 . 0) s-\sustainOff |
+	s1 | s2. s8-\sustainOn \pedalShift #'(3 . 0) s-\sustainOff |
+	s1 | s2. s8-\sustainOn \pedalShift #'(3 . 0) s-\sustainOff |
+	s2. s8-\sustainOn \pedalShift #'(2 . 0) s-\sustainOff | s2. s8-\sustainOn \pedalShift #'(1 . 0) s-\sustainOff |
 	s1 | s | s | s | s | s | s |
 	
-	s2. s8-\sustainDown \pedalShift #'(4 . 0) s-\sustainUp | s1 | 
-	s2. s8-\sustainDown \pedalShift #'(4 . 0) s-\sustainUp | s1 | % bar 19
+	s2. s8-\sustainOn \pedalShift #'(4 . 0) s-\sustainOff | s1 | 
+	s2. s8-\sustainOn \pedalShift #'(4 . 0) s-\sustainOff | s1 | % bar 19
 	s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s
 	
-	s2. s8-\sustainDown \pedalShift #'(3 . 0) s-\sustainUp | s1 |
-	s2. s8-\sustainDown \pedalShift #'(3 . 0) s-\sustainUp | s2. s8-\sustainDown \pedalShift #'(4 . 0) s-\sustainUp |
-	s2. s8-\sustainDown \pedalShift #'(2.6 . -1) s-\sustainUp | % bar 71
+	s2. s8-\sustainOn \pedalShift #'(3 . 0) s-\sustainOff | s1 |
+	s2. s8-\sustainOn \pedalShift #'(3 . 0) s-\sustainOff | s2. s8-\sustainOn \pedalShift #'(4 . 0) s-\sustainOff |
+	s2. s8-\sustainOn \pedalShift #'(2.6 . -1) s-\sustainOff | % bar 71
 	s1 s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s
-	s2. s8-\sustainDown \pedalShift #'(3 . 0) s-\sustainUp | s1 |
-	s2. s8-\sustainDown \pedalShift #'(3 . 0) s-\sustainUp | s1 |
-	s2. s8-\sustainDown \pedalShift #'(3 . 0) s-\sustainUp | s2. s8-\sustainDown \pedalShift #'(4 . 0) s-\sustainUp |
-	s2. s8-\sustainDown \pedalShift #'(4 . 0) s-\sustainUp | % bar 110
+	s2. s8-\sustainOn \pedalShift #'(3 . 0) s-\sustainOff | s1 |
+	s2. s8-\sustainOn \pedalShift #'(3 . 0) s-\sustainOff | s1 |
+	s2. s8-\sustainOn \pedalShift #'(3 . 0) s-\sustainOff | s2. s8-\sustainOn \pedalShift #'(4 . 0) s-\sustainOff |
+	s2. s8-\sustainOn \pedalShift #'(4 . 0) s-\sustainOff | % bar 110
 	s1*12
 	s1*15
 	s1*16
 	s1*5
 	
-	s2. s8-\sustainDown \pedalShift #'(3 . 0) s-\sustainUp | % bar 159
+	s2. s8-\sustainOn \pedalShift #'(3 . 0) s-\sustainOff | % bar 159
 	s1 |
-	s2. s8-\sustainDown \pedalShift #'(3 . 0) s-\sustainUp |
+	s2. s8-\sustainOn \pedalShift #'(3 . 0) s-\sustainOff |
 	s1 | 
-	s2. s8-\sustainDown \pedalShift #'(3 . 0) s-\sustainUp |
+	s2. s8-\sustainOn \pedalShift #'(3 . 0) s-\sustainOff |
 	
-	s1\sustainDown
-	s4 \pedalShift #'(5.9 . 0) s2.\sustainUp |
-	s1\sustainDown | 
-	s4 \pedalShift #'(8 . 0) s2.\sustainUp |
+	s1\sustainOn
+	s4 \pedalShift #'(5.9 . 0) s2.\sustainOff |
+	s1\sustainOn | 
+	s4 \pedalShift #'(8 . 0) s2.\sustainOff |
 	s1*8
 	s1*10
 	s1*16
@@ -994,7 +996,7 @@ ragged-last-bottom = ##f
 %annotate-spacing = ##t
 head-separation = 0.5\mm
 top-margin = 4\mm
-page-top-space = 6.8\mm
+% obsolete-page-top-space = 6.8\mm  top-system-spacing #'basic-distance = #(/ obsolete-page-top-space staff-space)
 bottom-margin = 8\mm
 first-page-number = 8
 print-first-page-number = ##t
@@ -1022,8 +1024,8 @@ print-first-page-number = ##t
 		ragged-last = ##f
 		ragged-bottom = ##f
 		ragged-last-bottom = ##f
-		between-system-padding = #0.1
-		between-system-space = #0.1
+% 		obsolete-between-system-padding = #0.1  system-system-spacing #'padding = #(/ obsolete-between-system-padding staff-space)  score-system-spacing #'padding = #(/ obsolete-between-system-padding staff-space)
+% 		obsolete-between-system-space = #0.1  system-system-spacing #'basic-distance = #(/ obsolete-between-system-space staff-space)  score-system-spacing #'basic-distance = #(/ obsolete-between-system-space staff-space)
 	}
 }
 }
