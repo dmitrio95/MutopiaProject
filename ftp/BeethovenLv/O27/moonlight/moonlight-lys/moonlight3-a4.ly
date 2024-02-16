@@ -6,6 +6,9 @@
 
 \header
 {
+	title = "Sonata No. 14, 'Moonlight'"
+	composer = "Ludwig van Beethoven"
+	opus = "Op. 27, No. 2"
 	piece = \markup { \bold "Presto agitato" }
 	
 	mutopiatitle = "Sonata No. 14 “Moonlight” (3rd Movement: Presto agitato)"

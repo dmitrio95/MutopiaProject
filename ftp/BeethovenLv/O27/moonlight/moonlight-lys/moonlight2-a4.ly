@@ -1,6 +1,9 @@
 \version "2.10.16"
 
 \header {
+ title = "Sonata No. 14, 'Moonlight'"
+ composer = "Ludwig van Beethoven"
+ opus = "Op. 27, No. 2"
  piece = \markup { \bold "Allegretto" }
 
  mutopiatitle = "Sonata No. 14 “Moonlight” (2nd Movement: Allegretto)"
