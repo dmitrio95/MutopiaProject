@@ -163,7 +163,7 @@ topsecondary =  \relative c'
 	
 	\times 2/3
 	{
-		\stemUp gis8-1^\markup {\italic "Si deve suonare tutto questo pezzo delicatissimamente e senza sordini"} cis-3 e-5
+		\stemUp gis8-1^\markup \italic \column {"Si deve suonare tutto questo pezzo" "delicatissimamente e senza sordini"} cis-3 e-5
 		
 		\override TupletNumber #'transparent = ##t
 		\override TupletBracket #'bracket-visibility = ##f
